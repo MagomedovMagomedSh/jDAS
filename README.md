@@ -10,6 +10,7 @@
 
 ![Пример сырых данных](images/raw_das.png)
 ![Пример очищенных данных](images/cleaned_das.png)
+
 Рис. 1\. Пример очистки данных
 
 На входе подается матрица n\_channels x n\_samples,  
@@ -56,6 +57,7 @@ SNR \- signal to noise ratio в bbox вокруг сигнала землетр�
 ## Основная модель
 
 Обучать будем jDAS ([https://ieeexplore.ieee.org/document/9655039](https://ieeexplore.ieee.org/document/9655039)) ![](images/architecture)  
+
 Рис. 3\. Архитектура jDAS модели
 
 Модель обучается маскированным channel modelling. То есть, берём, например, 11 соседних каналов(датчиков), 1 из них случайным образом зануляем, и, так как каналы находятся рядом, мы по соседним каналам пытаемся восстановить его структуру. Идея здесь в том, что модель не будет восстанавливать шум, так как у неё не будет информации чтобы это сделать, а сигнал восстановить сможет. 
@@ -76,6 +78,7 @@ Distributed acoustic sensing(DAS), is an emerging technology. DAS turns fibre-op
 Input and Output Data Format
 ![Пример сырых данных](images/raw_das.png)
 ![Пример очищенных данных](images/cleaned_das.png)  
+
 Fig. 1\. Example of data cleaning
 
 Input:  matrix n\_channels x n\_samples,  
@@ -87,6 +90,7 @@ Output: matrix with shape as input that contains cleaned data
 Metrics  
 ![Пример сырых данных и очищенных с помощью baseline](images/snr_row_bandpass.png)
 ![Пример очищенных данных с помощью jDas](images/cleaned_das.png)
+
 Fig. 2\. Metrics evaluation example. a) Raw data. b) Bandpass 10-100Hz   
 e) DAS-N2N \- deep learning approach 
 
@@ -114,6 +118,7 @@ Easiest solution \- 10-100 Hz bandpass filter has significant SNR-improvement(Se
 
 Main model  
 We will train jDAS ([https://ieeexplore.ieee.org/document/9655039](https://ieeexplore.ieee.org/document/9655039)) ![](images/architecture)  
+
 Fig. 3\. jDAS model architecture
 
 Model usually trained by masked channel modelling. I.e. we will take, for example, 11 neighbour channels(sensors), 1 channel randomly is setted to zero and because channels are near we try to reconstruct it. The main idea is that the model will not reconstruct noise, because there is no information about this(because noise is incoherent by definition) but coherent signals may be reconstructed.
