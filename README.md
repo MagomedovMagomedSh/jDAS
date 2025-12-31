@@ -96,7 +96,7 @@ python -m jdas serve
 # Откройте http://localhost:8000
 
 # Обучить модель (опционально)
-python -m jdas.train_hydra --config-name
+python -m jdas.train_hydra --config-name ваш_конфиг.yaml
 ```
 # Clean DAS data service
 

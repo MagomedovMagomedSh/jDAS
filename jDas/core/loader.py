@@ -1,7 +1,8 @@
-import obspy
 from pathlib import Path
+
 import numpy as np
-from typing import List
+import obspy
+
 
 def load_mseed_files(folder_path: Path) -> np.ndarray:
     """Загружает каналы 647-771 из mseed файлов"""
@@ -14,6 +15,6 @@ def load_mseed_files(folder_path: Path) -> np.ndarray:
             # Преобразуем в numpy array
             channel_data = st[0].data.astype(np.float32)
             data.append(channel_data)
-    
+
     # Объединяем каналы
     return np.stack(data)  # [channels, time_samples]
