@@ -1,0 +1,14 @@
+# .gitignore
+.env
+.env.*
+!.env.example
+
+# Также
+*.pth
+*.ckpt
+mlruns/
+checkpoints/
+data/processed/
+output/
+__pycache__/
+*.pyc

@@ -1,0 +1,6 @@
+[core]
+    remote = yandex
+
+['remote "yandex"']
+    url = disk://dvc-cache/
+    type = yandex

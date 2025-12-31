@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  das-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+      - ./models:/app/models
+      - ./output:/app/output
+    env_file:
+      - .env  # Загружаем секреты из .env файла
+    environment:
+      - PYTHONPATH=/app/src
+    command: uvicorn das.api.app:app --host 0.0.0.0 --port 8000
+  
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlflow
+    command: mlflow server --host 0.0.0.0 --port 5000
