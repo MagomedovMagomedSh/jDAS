@@ -11,7 +11,7 @@ class JDASUnet(pl.LightningModule):
         
         # Простая UNet архитектура
         self.encoder1 = nn.Sequential(
-            nn.Conv1d(1, 32, 3, padding=1),
+            nn.Conv1d(4, 32, 3, padding=1),
             nn.ReLU(),
             nn.Conv1d(32, 32, 3, padding=1),
             nn.ReLU()
@@ -20,12 +20,14 @@ class JDASUnet(pl.LightningModule):
         self.decoder1 = nn.Sequential(
             nn.ConvTranspose1d(32, 32, 3, padding=1),
             nn.ReLU(),
-            nn.ConvTranspose1d(32, 1, 3, padding=1)
+            nn.ConvTranspose1d(32, 4, 3, padding=1)
         )
         
         self.loss_fn = nn.MSELoss()
     
     def forward(self, x):
+        if x.dim() == 4:
+            x = x.squeeze(1)
         encoded = self.encoder1(x)
         return self.decoder1(encoded)
     

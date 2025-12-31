@@ -13,26 +13,6 @@ def cli():
     """DAS Cleaning Service CLI"""
     pass
 
-@cli.command()
-@click.option("--config", default="configs/train.yaml", help="Hydra config path")
-@click.option("--debug", is_flag=True, help="Debug mode")
-def train(config: str, debug: bool):
-    """Train jDAS model with MLFlow logging"""
-    from jdas.training.trainer import train_model
-    from hydra import compose, initialize
-    
-    # Загружаем конфиг Hydra
-    config_path = Path(config).parent
-    config_name = Path(config).stem
-    
-    with initialize(version_base=None, config_path=str(config_path.relative_to(Path.cwd()))):
-        cfg = compose(config_name=config_name)
-    
-    if debug:
-        cfg.training.epochs = 2
-        cfg.model.batch_size = 4
-    
-    train_model(cfg)
 
 @cli.command()
 @click.option("--folder-url", required=True, help="Yandex Disk folder URL")
@@ -62,8 +42,9 @@ def process(folder_url: str, start: int, end: int, method: str, output_dir: str)
 @click.option("--reload", is_flag=True, help="Enable auto-reload")
 def serve(host: str, port: int, reload: bool):
     """Start FastAPI web service"""
+    from jdas.api.app import app
     uvicorn.run(
-        "jdas.api.app:app",
+        app,
         host=host,
         port=port,
         reload=reload

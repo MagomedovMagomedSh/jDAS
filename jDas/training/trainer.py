@@ -4,8 +4,8 @@ from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from omegaconf import DictConfig
 import torch
 
-from das.core.model import JDASUnet
-from das.training.dataset import create_dataloaders
+from jdas.core.model import JDASUnet
+from jdas.training.dataset import create_dataloaders
 
 def train_model(cfg: DictConfig):
     """Основная функция обучения с MLFlow логированием"""

@@ -11,4 +11,8 @@ checkpoints/
 data/processed/
 output/
 __pycache__/
+test_mlruns/
+outputs/
+mlflow.db
+lightning_logs/
 *.pyc

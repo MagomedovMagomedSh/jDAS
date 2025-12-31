@@ -1,0 +1,20 @@
+defaults:
+  - _self_
+
+data:
+  path: "./test-sample"
+  channels: [647, 650]  # всего 4 канала для теста
+  sample_rate: 1000.0
+  
+model:
+  learning_rate: 0.001
+  batch_size: 2  # маленький для теста
+  
+training:
+  epochs: 2  # всего 2 эпохи для теста
+  gpus: 0
+logging:
+  mlflow:
+    experiment_name: "test_das"
+    tracking_uri: "./test_mlruns"
+

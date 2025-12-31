@@ -8,6 +8,7 @@ from jdas.api.yandex import YandexDiskClient
 from jdas.core.loader import load_mseed_files
 from jdas.core.filter import bandpass_filter
 from jdas.core.model import JDASUnet
+import numpy as np
 
 app = FastAPI(title="DAS Cleaning Service")
 
