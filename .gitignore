@@ -16,3 +16,4 @@ outputs/
 mlflow.db
 lightning_logs/
 *.pyc
+/test-sample
